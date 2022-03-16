@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{.Values.container.name.replica}}"
+  labels:
+    name: "{{.Values.container.name.replica}}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: "{{.Values.container.name.replica}}"
+  template:
+    metadata:
+      labels:
+        name: "{{.Values.container.name.replica}}"
+      name: "{{.Values.container.name.replica}}"
+    spec:
+      containers:
+      - name: "{{.Values.container.name.replica}}"
+        image: "{{.Values.image}}"
+        env:
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: pguser-secret
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pguser-secret
+                key: password
+        envFrom:
+          - configMapRef:
+              name: pgreplica-config
+        volumeMounts:
+          - mountPath: /pgdata
+            name: pgdata
+          - mountPath: /backup
+            name: backup
+            readOnly: true
+          - mountPath: /pguser
+            name: pguser-volume
+          - mountPath: /pgmaster
+            name: pgmaster-volume
+        ports:
+          - containerPort: {{.Values.container.port}}
+            protocol: TCP
+      volumes:
+        - emptyDir: {}
+          name: pgdata
+        - emptyDir: {}
+          name: backup
+        - name: pguser-volume
+          secret:
+            secretName: pguser-secret
+        - name: pgmaster-volume
+          secret:
+            secretName: pgmaster-secret

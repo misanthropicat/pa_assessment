@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgreplica-config
+data:
+  PGHOST: /tmp
+  PG_MASTER_HOST: "{{.Values.container.name.master}}"
+  PG_MODE: replica
+  PG_MASTER_PORT: "{{.Values.container.port}}"
+  PG_DATABASE: webappdb

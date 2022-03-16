@@ -1,0 +1,7 @@
+fastapi
+fastapi_mail
+uvicorn
+sqlalchemy
+starlette
+pydantic
+psycopg2-binary

@@ -1,0 +1,22 @@
+name: master-replica
+container:
+  port: 5432
+  name:
+    master: pg-master
+    replica: pg-replica
+credentials:
+  master: password
+  root: password
+  user: password
+serviceType: ClusterIP
+image: postgres:14.2-alpine
+pv:
+  storage: 400M
+  name: master-pv
+  mode: ReadWriteMany
+  path: /data
+pvc:
+  name: master-pvc
+resources:
+  cpu: 200m
+  memory: 512Mi
