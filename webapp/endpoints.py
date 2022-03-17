@@ -5,7 +5,7 @@ from starlette.requests import Request
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-from .crud import create_visitor
+from .crud import create_visitor, get_visitor_by_ip
 from .schemas import VisitorCreate
 from .database import get_db
 
@@ -52,3 +52,13 @@ async def blacklisted(request: Request):
 @router.get('/')
 def multiply(n: int = 0):
     return n * n
+
+@router.middleware("http")
+async def check_ip_address(request: Request, call_next):
+    ip = request.client.host
+    if get_visitor_by_ip(ip):
+        data = {
+            'message': f'IP {ip} is not allowed to access this resource.'
+        }
+        return JSONResponse(status_code=444, content=data)
+    return await call_next(request)
