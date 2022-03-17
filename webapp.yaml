@@ -1,7 +1,0 @@
-webapp:
-  MAIL_USERNAME: email.test.user.2022
-  MAIL_PASSWORD: fUck1ngP@ssw0rd # it should be stored securely (HashiCorp Vault or analogues). It's placed here as example and for simplicity.
-  MAIL_FROM: email.test.user.2022@gmail.com
-  MAIL_PORT: 587
-  MAIL_SERVER: smtp.gmail.com
-  MAIL_FROM_NAME: TestUser

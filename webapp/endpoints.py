@@ -1,22 +1,14 @@
 from datetime import datetime
 import os
-import yaml
 from starlette.requests import Request
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-from .crud import create_visitor, get_visitor_by_ip
+from .crud import create_visitor
 from .schemas import VisitorCreate
 from .database import get_db
 
 router = APIRouter()
-
-loader = yaml.SafeLoader
-
-with open(f"{os.getcwd()}/webapp.yaml") as conf_data:
-    config = yaml.load(conf_data, Loader=loader)
-    for key, value in config['webapp'].items():
-        os.environ[key] = str(value)
 
 conf = ConnectionConfig(
     MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
@@ -52,13 +44,3 @@ async def blacklisted(request: Request):
 @router.get('/')
 def multiply(n: int = 0):
     return n * n
-
-@router.middleware("http")
-async def check_ip_address(request: Request, call_next):
-    ip = request.client.host
-    if get_visitor_by_ip(ip):
-        data = {
-            'message': f'IP {ip} is not allowed to access this resource.'
-        }
-        return JSONResponse(status_code=444, content=data)
-    return await call_next(request)

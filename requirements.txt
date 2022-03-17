@@ -5,4 +5,3 @@ sqlalchemy
 starlette
 pydantic
 psycopg2-binary
-pyyaml
