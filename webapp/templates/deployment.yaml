@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.webapp.name }}"
+  labels:
+    app: "{{ .Values.webapp.name }}"
+    group: "{{ .Values.webapp.group }}"
+spec:
+  replicas: {{ .Values.webapp.replicaCount }}
+  selector:
+    matchLabels:
+      app: "{{ .Values.webapp.name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.webapp.name }}"
+    spec:
+      containers:
+      - name: "{{ .Values.webapp.name }}"
+        image: "{{ .Values.webapp.container.image }}"
+        ports:
+          - containerPort: {{ .Values.webapp.container.port }}
+        envFrom:
+          - configMapRef:
+              name: webapp-config
+        env:
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: webapp-secret
+                key: username
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: webapp-secret
+                key: password
+          - name: POSTGRES_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: pgmaster-secret
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pgmaster-secret
+                key: password
+      

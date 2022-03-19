@@ -1,0 +1,10 @@
+webapp:
+  name: webapp
+  group: webapp
+  replicaCount: 1
+  container:
+    image: olgamogish/postgres-fastapi-helm:latest
+    port: 8000
+  service:
+    type: ClusterIP
+    port: 8000
