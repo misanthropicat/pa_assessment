@@ -4,9 +4,9 @@ from starlette.requests import Request
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-from .crud import create_visitor
-from .schemas import VisitorCreate
-from .database import get_db
+from webapp.crud import create_visitor
+from webapp.schemas import VisitorCreate
+from webapp.database import get_db
 
 router = APIRouter()
 

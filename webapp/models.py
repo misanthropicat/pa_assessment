@@ -1,4 +1,4 @@
-from .database import Base
+from webapp.database import Base
 from sqlalchemy import Column, Integer, String, DateTime, BigInteger
 
 class Visitor(Base):

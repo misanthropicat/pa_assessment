@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from . import models, schemas
+from webapp import models, schemas
 
 def get_visitor(db: Session, visitor_id: int):
     return db.query(models.Visitor).filter(models.Visitor.id == visitor_id).first()
