@@ -1,5 +1,6 @@
 from datetime import datetime
 import os
+import logging
 from starlette.requests import Request
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
@@ -29,6 +30,7 @@ async def send_email_async(subject: str, email_to: str, body: str):
         body=body,
         subtype='html',
     )
+    logging.debug(f'conf: {conf}')
     fm = FastMail(conf)
     await fm.send_message(message)
 
@@ -39,7 +41,7 @@ async def blacklisted(request: Request):
     with get_db() as db:
         visitor = VisitorCreate(path=request.url.path, ipaddress=ip, blocking_time=datetime.now())
         db_entry = create_visitor(db, visitor)
-    return JSONResponse(status_code=444, content={'message': dict(db_entry)})
+    return JSONResponse(status_code=444, content={'message': db_entry.__dict__})
 
 @router.get('/')
 def multiply(n: int = 0):

@@ -6,4 +6,4 @@ data:
   PGHOST: /tmp
   PG_MODE: master
   PG_MASTER_PORT: "{{.Values.container.port}}"
-  PG_DATABASE: webappdb
+  PG_DATABASE: postgres
