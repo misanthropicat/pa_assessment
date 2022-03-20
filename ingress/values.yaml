@@ -3,12 +3,7 @@ ingress:
   replicaCount: 1
   annotations: 
     class: nginx
-  hosts:
-    - host: example.local
-      paths: 
-        - path: /
-          pathType: Prefix
-          backend:
-            serviceName: webapp
-            servicePort: 80
-  defaultBackend: webapp
+  defaultBackend:
+    service:
+      name: webapp
+      port: 80
