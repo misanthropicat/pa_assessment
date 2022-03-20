@@ -4,6 +4,7 @@ webapp:
   replicaCount: 1
   container:
     image: olgamogish/postgres-fastapi-helm:latest
+    imagePullPolicy: IfNotPresent
     port: 8000
   service:
     type: ClusterIP

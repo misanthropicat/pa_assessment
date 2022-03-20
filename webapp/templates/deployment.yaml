@@ -18,6 +18,7 @@ spec:
       containers:
       - name: "{{ .Values.webapp.name }}"
         image: "{{ .Values.webapp.container.image }}"
+        imagePullPolicy: "{{ .Values.webapp.container.imagePullPolicy }}"
         ports:
           - containerPort: {{ .Values.webapp.container.port }}
         envFrom:
