@@ -1,9 +1,0 @@
-ingress:
-  name: ingress-service
-  replicaCount: 1
-  annotations: 
-    class: nginx
-  defaultBackend:
-    service:
-      name: webapp
-      port: 80

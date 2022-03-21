@@ -1,9 +1,0 @@
-ingress:
-  hosts:
-    - host: host.k8s.com
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:  
-            serviceName: webapp
-            servicePort: 8000
