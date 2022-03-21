@@ -5,7 +5,7 @@ webapp:
   container:
     image: olgamogish/postgres-fastapi-helm:latest
     imagePullPolicy: IfNotPresent
-    port: 8000
+    port: 8080
   service:
     type: ClusterIP
     port: 8080
