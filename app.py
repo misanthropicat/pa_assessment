@@ -23,4 +23,4 @@ async def check_ip_address(request: Request, call_next):
     return await call_next(request)
 
 if __name__ == '__main__':
-    uvicorn.run('app:app', reload=True)
+    uvicorn.run('app:app', host='0.0.0.0', port='8080', reload=True)
