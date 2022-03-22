@@ -40,4 +40,4 @@ webapp-b79dfdf5-zzzm8              1/1     Running   0          10m
 | kube-system | kube-dns      | No node port |
 |-------------|---------------|--------------|----------------------------|
 ```
-2. Swagger is available on <nginx-service>/docs
+2. Swagger is available on `<nginx-service>/docs`
