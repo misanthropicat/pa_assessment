@@ -7,7 +7,7 @@ metadata:
     name: "{{ .Values.webapp.name }}"
 spec:
   type: "{{ .Values.webapp.service.type }}"
-  selector:             
+  selector:
     app: "{{ .Values.webapp.name }}"
   ports:
   - port: {{ .Values.webapp.service.port }}       
