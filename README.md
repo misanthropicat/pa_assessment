@@ -1,19 +1,19 @@
 ## H2 Purpose:
 This project is an example of deployment of simple web application and necessary infrastructure with Helm.
 
-## H2 Used tech stack:
+## Used tech stack:
 - FastAPI
 - PostgreSQL
 - Helm
 - Docker
 - Nginx
 
-## H2 Pre-requirements:
+## Pre-requirements:
 Having any of the following cluster:
 - minikube on Linux-based host with `--driver=none` (tested)
 - any other Kubernetes cluster + kubectl
 
-## H2 Installing:
+## Installing:
 1. Clone this repo
 2. Run start.sh
 3. Check: `kubectl get po`
@@ -26,7 +26,7 @@ pg-replica-64f7b8556c-t5w4g        1/1     Running   0          10m
 webapp-b79dfdf5-zzzm8              1/1     Running   0          10m
 ```
 
-## H2 Usage:
+## Usage:
 1. Get Nginx URL `minikube service url`
 ```
 |-------------|---------------|--------------|----------------------------|
