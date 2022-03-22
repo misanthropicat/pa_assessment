@@ -1,4 +1,4 @@
-## H2 Purpose:
+## Purpose:
 This project is an example of deployment of simple web application and necessary infrastructure with Helm.
 
 ## Used tech stack:
