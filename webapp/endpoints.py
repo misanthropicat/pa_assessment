@@ -41,7 +41,7 @@ async def blacklisted(request: Request):
     with get_db() as db:
         visitor = VisitorCreate(path=request.url.path, ipaddress=ip, blocking_time=datetime.now())
         db_entry = create_visitor(db, visitor)
-    return JSONResponse(status_code=444, content={'message': db_entry.__dict__})
+    return JSONResponse(status_code=444, content=repr(db_entry))
 
 @router.get('/')
 def multiply(n: int = 0):

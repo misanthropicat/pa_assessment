@@ -21,17 +21,6 @@ spec:
         imagePullPolicy: "{{ .Values.webapp.container.imagePullPolicy }}"
         ports:
           - containerPort: {{ .Values.webapp.container.port }}
-        readinessProbe:
-          httpGet:
-            port: {{ .Values.webapp.container.port }}
-            path: /docs
-          initialDelaySeconds: 15
-        livenessProbe:
-          httpGet:
-            port: {{ .Values.webapp.container.port }}
-            path: /docs
-          initialDelaySeconds: 15
-          periodSeconds: 15
         envFrom:
           - configMapRef:
               name: {{ .Values.webapp.config.name }}

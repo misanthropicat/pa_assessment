@@ -10,7 +10,7 @@ This project is an example of deployment of simple web application and necessary
 
 ## Pre-requirements:
 Having any of the following cluster:
-- minikube on Linux-based host with `--driver=none` (tested)
+- minikube on Linux host with `--driver=none` or Windows host with `--driver=hyperv` (both tested)
 - any other Kubernetes cluster + kubectl
 
 ## Installing:

@@ -9,5 +9,4 @@ docker build -t olgamogish/postgres-fastapi-helm:latest .
 docker push olgamogish/postgres-fastapi-helm:latest
 helm install postgres postgres
 helm install webapp webapp
-kubectl patch configmap tcp-services -n ingress-nginx --patch "{\"data\":{\"8080\":\"default/webapp:8080\"}}"
-kubectl patch deployment ingress-nginx-controller --patch "$(cat ingress-nginx-controller-patch.yaml)" -n ingress-nginx
+helm install nginx nginx
