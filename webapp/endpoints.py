@@ -28,7 +28,6 @@ async def send_email_async(subject: str, email_to: str, body: str):
         subject=subject,
         recipients=[email_to],
         body=body,
-        subtype='html',
     )
     logging.debug(f'conf: {conf}')
     fm = FastMail(conf)
