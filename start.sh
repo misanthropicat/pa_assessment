@@ -9,4 +9,4 @@ docker build -t olgamogish/postgres-fastapi-helm:latest .
 docker push olgamogish/postgres-fastapi-helm:latest
 helm install postgres postgres
 helm install webapp webapp
-helm install nginx nginx
+kubectl create -f ingress.yaml
