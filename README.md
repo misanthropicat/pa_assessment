@@ -6,11 +6,10 @@ This project is an example of deployment of simple web application and necessary
 - PostgreSQL
 - Helm
 - Docker
-- Nginx
 
 ## Pre-requirements:
 Having any of the following cluster:
-- minikube on Linux host with `--driver=none` or Windows host with `--driver=hyperv` (both tested)
+- minikube on Linux host with `--driver=none` or Windows host with `--driver=hyperv` (both tested). Required addons: ingress, ingress-dns, metallb
 - any other Kubernetes cluster + kubectl
 
 ## Installing:
@@ -20,24 +19,8 @@ Having any of the following cluster:
 Expected output is like the following:
 ```
 NAME                               READY   STATUS    RESTARTS   AGE
-nginx-deployment-86b659b7f-zb6w7   1/1     Running   0          10m
 pg-master                          1/1     Running   0          10m
 pg-replica-64f7b8556c-t5w4g        1/1     Running   0          10m
 webapp-b79dfdf5-zzzm8              1/1     Running   0          10m
 ```
-
-## Usage:
-1. Get Nginx URL `minikube service url`
-```
-|-------------|---------------|--------------|----------------------------|
-|  NAMESPACE  |     NAME      | TARGET PORT  |            URL             |
-|-------------|---------------|--------------|----------------------------|
-| default     | kubernetes    | No node port |
-| default     | nginx-service |           80 | http://10.244.128.12:30009 |
-| default     | pg-master     | No node port |
-| default     | pg-replica    | No node port |
-| default     | webapp        | No node port |
-| kube-system | kube-dns      | No node port |
-|-------------|---------------|--------------|----------------------------|
-```
-2. Swagger is available on `<nginx-service>/docs`
+4. Open browser: swagger is available on URL http://webapp.host.local/docs
