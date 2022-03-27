@@ -1,8 +1,0 @@
-app: webapp-nginx
-port: 80
-config:
-  name: nginx-config
-upstream:
-  name: webapp
-image: nginx:1.21
-  

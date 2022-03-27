@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pgmaster-config
-data:
-  PGHOST: /tmp
-  PG_MODE: master
-  PG_MASTER_PORT: "{{.Values.container.port}}"
-  PG_DATABASE: postgres

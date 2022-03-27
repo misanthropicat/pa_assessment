@@ -3,7 +3,7 @@ This project is an example of deployment of simple web application and necessary
 
 ## Used tech stack:
 - FastAPI
-- PostgreSQL
+- Kubegres
 - Helm
 - Docker
 
@@ -12,15 +12,34 @@ Having any of the following cluster:
 - minikube on Linux host with `--driver=none` or Windows host with `--driver=hyperv` (both tested). Required addons: ingress, ingress-dns, metallb
 - any other Kubernetes cluster + kubectl
 
-## Installing:
+## Installation:
 1. Clone this repo
-2. Run start.sh
-3. Check: `kubectl get po`
+2. Run install.sh
+3. Check deployment
 Expected output is like the following:
 ```
-NAME                               READY   STATUS    RESTARTS   AGE
-pg-master                          1/1     Running   0          10m
-pg-replica-64f7b8556c-t5w4g        1/1     Running   0          10m
-webapp-b79dfdf5-zzzm8              1/1     Running   0          10m
+C:\>kubectl get po
+NAME                      READY   STATUS    RESTARTS   AGE
+webapp-55679cc648-6x7tg   1/1     Running   0          22s
+webapp-pg-1-0             1/1     Running   0          42s
+webapp-pg-2-0             1/1     Running   0          31s
+
+C:\>kubectl get svc
+NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+kubernetes          ClusterIP   10.96.0.1        <none>        443/TCP    17h
+webapp              ClusterIP   10.102.147.153   <none>        8080/TCP   30s
+webapp-pg           ClusterIP   None             <none>        5432/TCP   39s
+webapp-pg-replica   ClusterIP   None             <none>        5432/TCP   28s
+
+C:\>kubectl get ing
+NAME             CLASS   HOSTS               ADDRESS        PORTS   AGE
+ingress-webapp   nginx   webapp.host.local   172.27.95.23   80      39s
+
+C:\>kubectl get deploy
+NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+webapp   1/1     1            1           52s
 ```
 4. Open browser: swagger is available on URL http://webapp.host.local/docs
+
+## Unistallation:
+Run uninstall.sh
