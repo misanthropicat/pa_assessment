@@ -38,11 +38,11 @@ spec:
           - name: POSTGRES_USERNAME
             valueFrom:
               secretKeyRef:
-                name: pgmaster-secret
+                name: pg-secret
                 key: username
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: pgmaster-secret
-                key: password
+                name: pg-secret
+                key: superUserPassword
       
